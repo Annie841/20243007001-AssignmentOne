@@ -1,4 +1,8 @@
 <resources>
+    <string name="facilities_clicked">Facilities clicked</string>
+    <string name="events_clicked">Events clicked</string>
+    <string name="clubs_clicked">Clubs clicked</string>
+    <string name="support_clicked">Support clicked</string>
     <string name="app_name">CampusLife</string>
     <string name="welcome_message">Welcome to CampusLife - Your Pocket Guide to University of Waikato</string>
     <string name="facilities">Facilities</string>
