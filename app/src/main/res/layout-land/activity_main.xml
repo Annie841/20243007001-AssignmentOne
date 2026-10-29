@@ -7,36 +7,29 @@
     android:layout_height="match_parent"
     android:background="@color/home_background">
 
-    <!-- Column boundaries: outer margins and a central gap. -->
+    <!-- Divide the available width into four equal columns. -->
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/columnLeft"
+        android:id="@+id/columnQuarter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.035" />
+        app:layout_constraintGuide_percent="0.25" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/columnLeftEnd"
+        android:id="@+id/columnHalf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.465" />
+        app:layout_constraintGuide_percent="0.50" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/columnRight"
+        android:id="@+id/columnThreeQuarters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.535" />
+        app:layout_constraintGuide_percent="0.75" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/columnRightEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.965" />
-
-    <!-- Vertical positions are proportions of the available content height. -->
+    <!-- The banner occupies the upper half of the content area. -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bannerBottom"
         android:layout_width="wrap_content"
@@ -45,33 +38,20 @@
         app:layout_constraintGuide_percent="0.50" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/firstRowTop"
+        android:id="@+id/iconRowTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
+        app:layout_constraintGuide_percent="0.54" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/firstRowBottom"
+        android:id="@+id/iconRowBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.69" />
+        app:layout_constraintGuide_percent="0.87" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/secondRowTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.77" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/secondRowBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.94" />
-    <!-- Green background behind the topic buttons and captions. -->
+    <!-- Green background beneath the banner. -->
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -81,7 +61,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/bannerBottom"
         app:layout_constraintBottom_toBottomOf="parent" />
-    <!-- Banner layers: photograph, contrast overlay and welcome text. -->
+
+    <!-- Banner photograph. -->
     <ImageView
         android:id="@+id/bannerImage"
         android:layout_width="0dp"
@@ -95,6 +76,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bannerBottom" />
 
+    <!-- Darken the photograph to improve text readability. -->
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -118,74 +100,84 @@
         app:layout_constraintTop_toTopOf="@id/bannerImage"
         app:layout_constraintBottom_toBottomOf="@id/bannerImage" />
 
-    <!-- First row. -->
+    <!-- Column 1: Facilities. -->
     <ImageButton
         android:id="@+id/btnFacilities"
         style="@style/CampusTopicImage"
         android:contentDescription="@string/facilities"
         android:src="@drawable/img_btn_facilities"
-        app:layout_constraintStart_toStartOf="@id/columnLeft"
-        app:layout_constraintEnd_toStartOf="@id/columnLeftEnd"
-        app:layout_constraintTop_toTopOf="@id/firstRowTop"
-        app:layout_constraintBottom_toTopOf="@id/firstRowBottom" />
+        app:layout_constraintWidth_percent="0.21"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/columnQuarter"
+        app:layout_constraintTop_toTopOf="@id/iconRowTop"
+        app:layout_constraintBottom_toTopOf="@id/iconRowBottom" />
 
+    <TextView
+        style="@style/CampusTopicCaption"
+        android:layout_height="wrap_content"
+        android:text="@string/facilities"
+        app:layout_constraintStart_toStartOf="@id/btnFacilities"
+        app:layout_constraintEnd_toEndOf="@id/btnFacilities"
+        app:layout_constraintTop_toBottomOf="@id/btnFacilities"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Column 2: Events. -->
     <ImageButton
         android:id="@+id/btnEvents"
         style="@style/CampusTopicImage"
         android:contentDescription="@string/events"
         android:src="@drawable/img_btn_events"
-        app:layout_constraintStart_toStartOf="@id/columnRight"
-        app:layout_constraintEnd_toStartOf="@id/columnRightEnd"
-        app:layout_constraintTop_toTopOf="@id/firstRowTop"
-        app:layout_constraintBottom_toTopOf="@id/firstRowBottom" />
+        app:layout_constraintWidth_percent="0.21"
+        app:layout_constraintStart_toStartOf="@id/columnQuarter"
+        app:layout_constraintEnd_toStartOf="@id/columnHalf"
+        app:layout_constraintTop_toTopOf="@id/iconRowTop"
+        app:layout_constraintBottom_toTopOf="@id/iconRowBottom" />
 
     <TextView
         style="@style/CampusTopicCaption"
-        android:text="@string/facilities"
-        app:layout_constraintStart_toStartOf="@id/btnFacilities"
-        app:layout_constraintEnd_toEndOf="@id/btnFacilities"
-        app:layout_constraintTop_toBottomOf="@id/btnFacilities"
-        app:layout_constraintBottom_toTopOf="@id/secondRowTop" />
-
-    <TextView
-        style="@style/CampusTopicCaption"
+        android:layout_height="wrap_content"
         android:text="@string/events"
         app:layout_constraintStart_toStartOf="@id/btnEvents"
         app:layout_constraintEnd_toEndOf="@id/btnEvents"
         app:layout_constraintTop_toBottomOf="@id/btnEvents"
-        app:layout_constraintBottom_toTopOf="@id/secondRowTop" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <!-- Second row. -->
+    <!-- Column 3: Clubs. -->
     <ImageButton
         android:id="@+id/btnClubs"
         style="@style/CampusTopicImage"
         android:contentDescription="@string/clubs"
         android:src="@drawable/img_btn_clubs"
-        app:layout_constraintStart_toStartOf="@id/columnLeft"
-        app:layout_constraintEnd_toStartOf="@id/columnLeftEnd"
-        app:layout_constraintTop_toTopOf="@id/secondRowTop"
-        app:layout_constraintBottom_toTopOf="@id/secondRowBottom" />
-
-    <ImageButton
-        android:id="@+id/btnSupport"
-        style="@style/CampusTopicImage"
-        android:contentDescription="@string/support"
-        android:src="@drawable/img_btn_support"
-        app:layout_constraintStart_toStartOf="@id/columnRight"
-        app:layout_constraintEnd_toStartOf="@id/columnRightEnd"
-        app:layout_constraintTop_toTopOf="@id/secondRowTop"
-        app:layout_constraintBottom_toTopOf="@id/secondRowBottom" />
+        app:layout_constraintWidth_percent="0.21"
+        app:layout_constraintStart_toStartOf="@id/columnHalf"
+        app:layout_constraintEnd_toStartOf="@id/columnThreeQuarters"
+        app:layout_constraintTop_toTopOf="@id/iconRowTop"
+        app:layout_constraintBottom_toTopOf="@id/iconRowBottom" />
 
     <TextView
         style="@style/CampusTopicCaption"
+        android:layout_height="wrap_content"
         android:text="@string/clubs"
         app:layout_constraintStart_toStartOf="@id/btnClubs"
         app:layout_constraintEnd_toEndOf="@id/btnClubs"
         app:layout_constraintTop_toBottomOf="@id/btnClubs"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <!-- Column 4: Support. -->
+    <ImageButton
+        android:id="@+id/btnSupport"
+        style="@style/CampusTopicImage"
+        android:contentDescription="@string/support"
+        android:src="@drawable/img_btn_support"
+        app:layout_constraintWidth_percent="0.21"
+        app:layout_constraintStart_toStartOf="@id/columnThreeQuarters"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iconRowTop"
+        app:layout_constraintBottom_toTopOf="@id/iconRowBottom" />
+
     <TextView
         style="@style/CampusTopicCaption"
+        android:layout_height="wrap_content"
         android:text="@string/support"
         app:layout_constraintStart_toStartOf="@id/btnSupport"
         app:layout_constraintEnd_toEndOf="@id/btnSupport"
