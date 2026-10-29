@@ -5,7 +5,7 @@
     <style name="CampusTopicImage">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
-        <item name="android:background">@color/topic_button_background</item>
+        <item name="android:background">@drawable/button_selector</item>
         <item name="android:scaleType">fitCenter</item>
     </style>
 
@@ -14,7 +14,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Material.Small</item>
         <item name="android:importantForAccessibility">no</item>
     </style>
