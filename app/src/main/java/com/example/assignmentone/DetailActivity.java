@@ -10,6 +10,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /** Display the selected topic using the supplied resource arrays. */
 public class DetailActivity extends AppCompatActivity {
 
@@ -43,8 +46,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
         );
 
-        // Retrieve the selected index: Facilities 0, Events 1,
-        // Clubs 2 and Support 3.
+        // Facilities 0, Events 1, Clubs 2 and Support 3.
         int topicIndex = getIntent().getIntExtra(EXTRA_TOPIC_INDEX, 0);
 
         // Load the supplied parallel arrays in their original order.
@@ -58,7 +60,7 @@ public class DetailActivity extends AppCompatActivity {
                 R.array.string_array_content
         );
 
-        // Category labels follow the same order as the supplied arrays.
+        // Category labels use the same order as the supplied arrays.
         int[] categoryLabels = {
                 R.string.facilities,
                 R.string.events,
@@ -66,20 +68,39 @@ public class DetailActivity extends AppCompatActivity {
                 R.string.support
         };
 
+        // Explicit resource references allow compile-time checking.
+        Map<String, Integer> topicImages = new HashMap<>();
+        topicImages.put(
+                "img_btn_facilities", R.drawable.img_btn_facilities
+        );
+        topicImages.put(
+                "img_btn_events", R.drawable.img_btn_events
+        );
+        topicImages.put(
+                "img_btn_clubs", R.drawable.img_btn_clubs
+        );
+        topicImages.put(
+                "img_btn_support", R.drawable.img_btn_support
+        );
+
         ImageView topicImage = findViewById(R.id.ivDetailTopic);
         TextView categoryView = findViewById(R.id.tvDetailCategory);
         TextView titleView = findViewById(R.id.tvDetailTitle);
         TextView contentView = findViewById(R.id.tvDetailContent);
 
-        // Remove surrounding spaces before resolving the drawable name.
-        int imageResId = getResources().getIdentifier(
-                imageNames[topicIndex].trim(),
-                "drawable",
-                getPackageName()
+        // Resolve the image name from the supplied array.
+        // Every supplied name must have a matching entry in topicImages.
+        Integer imageResId = topicImages.get(
+                imageNames[topicIndex].trim()
         );
 
         // Populate every view using the same topic index.
-        topicImage.setImageResource(imageResId);
+        topicImage.setImageResource(
+                java.util.Objects.requireNonNull(
+                        imageResId,
+                        "Missing drawable mapping for the selected topic"
+                )
+        );
         categoryView.setText(categoryLabels[topicIndex]);
         titleView.setText(titles[topicIndex].trim());
         contentView.setText(contents[topicIndex].trim());

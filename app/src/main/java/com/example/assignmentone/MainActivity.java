@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Store the current Toast so previous feedback can be cancelled.
+    // Store the current Toast so previous feedback can be canceled.
     private Toast currentToast;
 
     @Override
