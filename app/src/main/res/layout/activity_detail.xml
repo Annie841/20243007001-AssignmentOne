@@ -1,10 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/detailRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    android:background="@color/home_background">
+
+    <!-- Reserve approximately one third of the content height for the header. -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/detailHeaderBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <!-- Header photograph, dark overlay, topic icon and category label. -->
+    <ImageView
+        android:id="@+id/ivDetailBanner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_main_banner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/detailHeaderBottom" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/banner_scrim"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="@id/ivDetailBanner"
+        app:layout_constraintEnd_toEndOf="@id/ivDetailBanner"
+        app:layout_constraintTop_toTopOf="@id/ivDetailBanner"
+        app:layout_constraintBottom_toBottomOf="@id/ivDetailBanner" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/detailHeaderSplit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <!-- The adjacent category label describes this decorative icon. -->
+    <ImageView
+        android:id="@+id/ivDetailTopic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_btn_facilities"
+        app:layout_constraintWidth_percent="0.40"
+        app:layout_constraintHeight_percent="0.23"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/detailHeaderSplit"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/detailHeaderBottom" />
+
+    <TextView
+        android:id="@+id/tvDetailCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/facilities"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/detailHeaderSplit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/detailHeaderBottom" />
+
+    <!-- Long topic content scrolls independently below the header. -->
+    <ScrollView
+        android:id="@+id/detailScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/detailHeaderBottom"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Proportional side spacing avoids fixed margins. -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/detailTextStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.025" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/detailTextEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.975" />
+
+            <TextView
+                android:id="@+id/tvDetailTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/detail_placeholder_title"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/detailTextStart"
+                app:layout_constraintEnd_toStartOf="@id/detailTextEnd"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvDetailContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_placeholder_content"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@id/detailTextStart"
+                app:layout_constraintEnd_toStartOf="@id/detailTextEnd"
+                app:layout_constraintTop_toBottomOf="@id/tvDetailTitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
