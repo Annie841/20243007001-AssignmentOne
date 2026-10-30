@@ -66,19 +66,31 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /** Show feedback when the Events image button is clicked. */
+    /** Show feedback and open Events details with topic index one. */
     public void onEventsClick(View view) {
         showFeedback(R.string.events_clicked);
+
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(DetailActivity.EXTRA_TOPIC_INDEX, 1);
+        startActivity(intent);
     }
 
-    /** Show feedback when the Clubs image button is clicked. */
+    /** Show feedback and open Clubs details with topic index two. */
     public void onClubsClick(View view) {
         showFeedback(R.string.clubs_clicked);
+
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(DetailActivity.EXTRA_TOPIC_INDEX, 2);
+        startActivity(intent);
     }
 
-    /** Show feedback when the Support image button is clicked. */
+    /** Show feedback and open Support details with topic index three. */
     public void onSupportClick(View view) {
         showFeedback(R.string.support_clicked);
+
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(DetailActivity.EXTRA_TOPIC_INDEX, 3);
+        startActivity(intent);
     }
 
     /** Remove feedback when this Activity is destroyed. */
